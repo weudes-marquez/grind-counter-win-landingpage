@@ -37,6 +37,106 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="style.css">
+    <style>
+        .security-notice {
+            margin-top: 25px;
+            background: rgba(255, 255, 255, 0.05);
+            border-left: 3px solid var(--hunter-orange);
+            padding: 15px;
+            border-radius: 4px;
+            text-align: left;
+            max-width: 450px;
+            backdrop-filter: blur(5px);
+            animation: fadeIn 1s ease-out 0.5s both;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .security-notice:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .security-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--hunter-orange);
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .security-notice p {
+            font-size: 0.8rem !important;
+            line-height: 1.4 !important;
+            margin: 0 !important;
+            color: #ccc !important;
+        }
+
+        .security-steps {
+            margin-top: 10px;
+            font-size: 0.75rem;
+            color: #999;
+        }
+
+        .security-steps span {
+            color: #fff;
+            font-weight: 600;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Hover Thumbnail Hint */
+        .security-notice {
+            position: relative;
+        }
+
+        .hover-hint-img {
+            position: absolute;
+            left: 105%;
+            top: 50%;
+            transform: translateY(-50%) scale(0.9);
+            width: 150px;
+            height: auto;
+            border-radius: 8px;
+            border: 2px solid var(--hunter-orange);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 100;
+        }
+
+        .security-notice:hover .hover-hint-img {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(-50%) scale(1);
+        }
+
+        @media (max-width: 1200px) {
+            .hover-hint-img {
+                display: none;
+            }
+        }
+    </style>
 
     <!-- Preload Critical Resources -->
     <link rel="preload" href="assets/01.mp4" as="video" type="video/mp4">
@@ -46,6 +146,26 @@
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
     <link rel="icon" type="image/png" href="assets/icon.png">
+
+    <!-- Google Analytics (GA4) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DN8YPVP3XC"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-DN8YPVP3XC');
+
+        // Custom function to track clicks on download buttons
+        function trackDownload(fileName) {
+            gtag('event', 'download', {
+                'event_category': 'App',
+                'event_label': fileName,
+                'file_name': fileName,
+                'file_extension': 'exe'
+            });
+        }
+    </script>
 </head>
 
 <body>
@@ -81,7 +201,7 @@
                     <p>O contador de abates definitivo para theHunter: COTW. <br>Pare de usar celular ou papel. Mantenha
                         o foco no jogo.</p>
                     <a href="https://github.com/weudes-marquez/cotw-releases/releases/latest/download/COTW-Grind-Counter-Setup.exe"
-                        class="btn" target="_blank">
+                        class="btn" target="_blank" onclick="trackDownload('COTW-Grind-Counter-Setup.exe')">
                         <i class="fab fa-windows"></i> BAIXAR PARA WINDOWS
                     </a>
                     <div class="compatibility-badge">
@@ -91,7 +211,24 @@
                         <i class="fab fa-android"></i> <i class="fab fa-apple"></i> Em breve para Android e iOS
                     </div>
                     <div style="margin-top: 15px; font-size: 0.8rem; color: #666;">
-                        v1.0.0 | Grátis
+                        v1.1.1 | Grátis
+                    </div>
+
+                    <!-- Security Disclosure -->
+                    <div class="security-notice">
+                        <div class="security-header">
+                            <i class="fas fa-shield-halved"></i>
+                            <span>Falso Positivo Antivírus</span>
+                        </div>
+                        <p>O Windows pode exibir um alerta de "Fornecedor Desconhecido". Isso ocorre por falta de uma
+                            assinatura digital (inviável para projetos gratuitos) e porque o app monitora atalhos do
+                            teclado para funcionar in-game. Após a análise inicial do seu antivírus, o diagnóstico será
+                            de <strong>arquivo seguro</strong>.</p>
+                        <div class="security-steps">
+                            <strong>Como instalar:</strong> Clique em <span>Mais informações</span> e depois em
+                            <span>Executar assim mesmo</span>.
+                        </div>
+                        <img src="assets/falso-positivo.webp" class="hover-hint-img" alt="Prévia da instalação">
                     </div>
                 </div>
 
@@ -152,7 +289,7 @@
                         mesmo com o jogo aberto</p>
                 </div>
                 <a href="https://github.com/weudes-marquez/cotw-releases/releases/latest/download/COTW-Grind-Counter-Setup.exe"
-                    class="btn btn-section" target="_blank">
+                    class="btn btn-section" target="_blank" onclick="trackDownload('COTW-Grind-Counter-Setup.exe')">
                     <i class="fab fa-windows"></i> BAIXAR AGORA
                 </a>
             </div>
@@ -367,6 +504,16 @@
 
         if (mockupLogin) mockupLogin.addEventListener('click', () => showContent('login'));
         if (mockupCounter) mockupCounter.addEventListener('click', () => showContent('features'));
+
+        // Security Notice click handler
+        const securityNotice = document.querySelector('.security-notice');
+        if (securityNotice) {
+            securityNotice.addEventListener('click', (e) => {
+                e.stopPropagation();
+                lightbox.classList.add('active');
+                lightboxImg.src = 'assets/falso-positivo.webp';
+            });
+        }
 
         // Lightbox Logic
         const lightbox = document.getElementById('lightbox');
