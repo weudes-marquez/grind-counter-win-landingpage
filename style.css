@@ -383,7 +383,8 @@ section.exit-up {
     }
 }
 
-.hero h1 {
+.hero h1,
+.hero h2 {
     font-size: 5.5rem;
     line-height: 1;
     margin-bottom: 20px;
@@ -392,7 +393,8 @@ section.exit-up {
     animation: fadeUp 1s forwards 0.5s;
 }
 
-.hero h1 span {
+.hero h1 span,
+.hero h2 span {
     color: var(--hunter-orange);
     text-shadow: 0 0 15px rgba(217, 93, 30, 0.6);
 }
