@@ -916,20 +916,22 @@ footer {
     .hero-container::after {
         display: block !important;
         content: 'Arraste para o lado →';
-        position: fixed;
-        bottom: 90px;
+        position: absolute;
+        bottom: -30px;
+        /* Move below the container area */
         left: 50%;
         transform: translateX(-50%);
-        color: rgba(255, 255, 255, 0.4);
-        font-size: 0.8rem;
+        color: rgba(255, 255, 255, 0.5);
+        font-size: 0.7rem;
+        /* Smaller font */
         pointer-events: none;
         z-index: 10;
-        background: rgba(0, 0, 0, 0.3);
-        padding: 5px 10px;
-        border-radius: 15px;
+        background: rgba(0, 0, 0, 0.6);
+        padding: 4px 10px;
+        /* Smaller padding */
+        border-radius: 12px;
+        white-space: nowrap;
     }
-
-
 
     .container {
         grid-template-columns: 1fr;
@@ -940,12 +942,10 @@ footer {
 
     section {
         padding: 60px 10px;
-        /* Reduced padding */
     }
 
     .text-col h2 {
         font-size: 2.5rem;
-        /* Reduced from 4.5rem */
     }
 
     .text-col h2::after {
@@ -955,7 +955,6 @@ footer {
 
     .text-col p {
         font-size: 1.1rem;
-        /* Reduced from 1.4rem */
         line-height: 1.5;
     }
 
@@ -999,20 +998,31 @@ footer {
         margin-bottom: 25px;
     }
 
+    /* Mobile Top Alignment Fix */
+    .hero {
+        justify-content: flex-start;
+        /* Stop centering vertically */
+        padding-top: 0;
+    }
+
     /* Redesigned Top Bar for Mobile */
     .hero-top {
-        position: absolute;
-        top: 0;
-        left: 0;
+        position: relative;
+        /* Changed to relative so it pushes content down naturally */
+        top: auto;
+        left: auto;
         width: 100%;
         margin-bottom: 0;
         justify-content: center;
+        z-index: 20;
     }
 
     .hero-content {
-        padding-top: 60px;
-        /* Space for the top bar */
+        padding-top: 20px;
+        /* Small padding from the bar */
         min-height: auto;
+        margin-top: 0;
+        justify-content: flex-start;
     }
 
     .hero-logo-plate {
@@ -1053,5 +1063,30 @@ footer {
         width: 40px;
         height: 40px;
         font-size: 1rem;
+    }
+}
+
+/* Mobile Footer Fixes */
+@media (max-width: 1000px) {
+    footer {
+        padding: 40px 20px;
+    }
+
+    .footer-logo {
+        flex-direction: column;
+        font-size: 1.5rem;
+        gap: 10px;
+        line-height: 1.4;
+        margin-bottom: 25px;
+    }
+
+    .footer-logo img {
+        width: 60px;
+        height: 60px;
+    }
+
+    .social-links a {
+        margin: 0 15px;
+        font-size: 2rem;
     }
 }

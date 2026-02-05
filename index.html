@@ -37,6 +37,7 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="security-guide.css">
     <style>
         .security-notice {
             margin-top: 25px;
@@ -218,17 +219,18 @@
                     <div class="security-notice">
                         <div class="security-header">
                             <i class="fas fa-shield-halved"></i>
-                            <span>Falso Positivo Antivírus</span>
+                            <span>Segurança & Antivírus</span>
                         </div>
-                        <p>O Windows pode exibir um alerta de "Fornecedor Desconhecido". Isso ocorre por falta de uma
-                            assinatura digital (inviável para projetos gratuitos) e porque o app monitora atalhos do
-                            teclado para funcionar in-game. Após a análise inicial do seu antivírus, o diagnóstico será
-                            de <strong>arquivo seguro</strong>.</p>
-                        <div class="security-steps">
-                            <strong>Como instalar:</strong> Clique em <span>Mais informações</span> e depois em
-                            <span>Executar assim mesmo</span>.
+                        <p>O Windows pode exibir um alerta de "Fornecedor Desconhecido". Para evitar alertas repetitivos
+                            em cada atualização, recomendamos adicionar o app às exclusões do seu antivírus.</p>
+
+                        <!-- Dedicated Link Button -->
+                        <div class="security-steps"
+                            onclick="document.getElementById('safety').scrollIntoView({behavior: 'smooth'}); event.stopPropagation();"
+                            style="cursor: pointer; display: inline-block; margin-top: 5px; border-bottom: 1px dotted var(--hunter-orange);">
+                            <strong>Dica:</strong> Clique aqui para entender e resolver. <i class="fas fa-arrow-down"
+                                style="margin-left:5px; color:var(--hunter-orange);"></i>
                         </div>
-                        <img src="assets/falso-positivo.webp" class="hover-hint-img" alt="Prévia da instalação">
                     </div>
                 </div>
 
@@ -418,6 +420,131 @@
         <img class="lightbox-content" id="lightbox-img" alt="Imagem ampliada">
     </div>
 
+    <!-- NEW SECURITY GUIDE SECTION -->
+    <section class="security-guide" id="safety">
+        <div class="guide-container">
+            <!-- Left: Navigation / Topics -->
+            <div class="guide-nav">
+                <h2>GUIA DE <span>SEGURANÇA</span></h2>
+
+                <div class="guide-item active" onmouseover="showGuide('find')" onclick="showGuide('find')">
+                    <h3><i class="fas fa-search-location"></i> 1. Encontrar a Pasta</h3>
+                    <p class="nav-desc">Como localizar onde o aplicativo foi instalado no seu PC.</p>
+                </div>
+
+                <div class="guide-item" onmouseover="showGuide('path')" onclick="showGuide('path')">
+                    <h3><i class="fas fa-folder-open"></i> 2. Verificar Caminho</h3>
+                    <p class="nav-desc">Confirme o endereço exato para adicionar nas exceções.</p>
+                </div>
+
+                <div class="guide-item" onmouseover="showGuide('antivirus')" onclick="showGuide('antivirus')">
+                    <h3><i class="fas fa-shield-virus"></i> 3. Configurar Antivírus</h3>
+                    <p class="nav-desc">Adicione a pasta à lista branca para evitar bloqueios.</p>
+                </div>
+
+                <div class="guide-item" onmouseover="showGuide('falsepositive')" onclick="showGuide('falsepositive')">
+                    <h3><i class="fas fa-exclamation-triangle"></i> 4. Falso Positivo?</h3>
+                    <p class="nav-desc">Entenda por que o Windows alerta sobre arquivos novos.</p>
+                </div>
+
+                <div class="guide-item" onmouseover="showGuide('phishing')" onclick="showGuide('phishing')">
+                    <h3><i class="fas fa-user-shield"></i> Cuidado com Clones</h3>
+                    <p class="nav-desc">Como identificar se você está usando a versão oficial segura.</p>
+                </div>
+            </div>
+
+            <!-- Right: Display Area -->
+            <div class="guide-display">
+
+                <!-- CONTENT 1: Encontrar Pasta -->
+                <div id="guide-find" class="guide-content active">
+                    <div class="guide-image-container">
+                        <img src="assets/exception-app/botao-direito-menu.webp" alt="Menu de contexto do Windows">
+                    </div>
+                    <div class="guide-caption">
+                        <strong>PASSO 1</strong>
+                        <p>Clique com o <span>botão direito</span> no ícone do COTW Grind Counter (na Área de Trabalho
+                            ou Menu Iniciar) e escolha a opção <span>"Abrir local do arquivo"</span>.</p>
+                    </div>
+                </div>
+
+                <!-- CONTENT 2: Verificar Caminho -->
+                <div id="guide-path" class="guide-content">
+                    <div class="guide-image-container">
+                        <img src="assets/exception-app/caminho-do-app.webp" alt="Barra de endereço do Windows Explorer">
+                    </div>
+                    <div class="guide-caption">
+                        <strong>PASSO 2</strong>
+                        <p>Na janela que abrir, clique na barra de endereços no topo e <span>copie o caminho da
+                                pasta</span>. Geralmente é algo como: <em>AppData\Local\Programs\cotwgrindcounter</em>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- CONTENT 3: Antivírus -->
+                <div id="guide-antivirus" class="guide-content">
+                    <div class="guide-image-container">
+                        <video autoplay muted loop playsinline
+                            style="width:100%; height:100%; object-fit:contain; background:#000;">
+                            <source src="assets/videos/adicionar-exception-pasta.webm" type="video/webm">
+                            Seu navegador não suporta vídeos.
+                        </video>
+                    </div>
+                    <div class="guide-caption">
+                        <strong>PASSO 3</strong>
+                        <p>Abra seu Antivírus (ou Windows Defender), procure por <span>"Exclusões"</span> e adicione a
+                            <strong>pasta</strong> que você copiou. Isso libera o app permanentemente.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- CONTENT 4: Falso Positivo -->
+                <div id="guide-falsepositive" class="guide-content">
+                    <div class="guide-image-container">
+                        <img src="assets/falso-positivo.webp" alt="Tela do Windows SmartScreen">
+                    </div>
+                    <div class="guide-caption">
+                        <strong>POR QUE ISSO ACONTECE?</strong>
+                        <p>Apps que não possuem "Assinatura Digital"(geralmente por ser uma licença cara e o aplicativo
+                            é gratuito) da Microsoft o sistema pode marca-lo como <strong>"Desconhecido"</strong> e por
+                            funcionar como um overlay acima do jogo ele pode ser confundido com um "Cheat" ou "Hack" por
+                            alguns
+                            antivírus. Mas o antivírus fara a analise do arquivo e <strong>verá que ele é
+                                seguro.</strong>
+                        </p>
+
+                    </div>
+                </div>
+
+                <!-- CONTENT 5: Phishing -->
+                <div id="guide-phishing" class="guide-content">
+                    <div class="guide-image-container">
+                        <div
+                            style="display:flex; align-items:center; justify-content:center; height:100%; background:#1a0505; flex-direction:column; gap:20px; text-align:center; padding:40px;">
+                            <i class="fas fa-skull-crossbones" style="color:#ef4444; font-size: 4rem;"></i>
+                            <h3 style="color:white; font-family:'Oswald'; margin:0;">ALERTA DE SEGURANÇA</h3>
+                            <p style="color:#ccc; font-size:1.1rem; max-width:400px;">
+                                Nunca baixe este app de sites desconhecidos, Discord ou links diretos de amigos.
+                            </p>
+                            <div
+                                style="background:rgba(255,255,255,0.1); padding:10px 20px; border-radius:4px; border:1px solid #444;">
+                                <span style="color:#aaa; font-size:0.8rem;">LINK OFICIAL:</span><br>
+                                <span
+                                    style="color:var(--hunter-orange); font-family:monospace;">github.com/weudes-marquez</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="guide-caption">
+                        <strong style="color: #ef4444;">EVITE GOLPES</strong>
+                        <p>Sempre verifique a url de download. Apenas o link oficial no
+                            GitHub garante um software livre de vírus e malwares.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
     <!-- FLOATING BUTTONS -->
     <div class="floating-buttons">
         <button id="btn-share" class="floating-btn" title="Compartilhar com um amigo">
@@ -435,7 +562,22 @@
             COTW GRIND COUNTER <span>OVERLAY</span>
         </div>
         <p style="color: #666; margin-bottom: 10px;">Um aplicativo auxiliar do <strong>COTW Pin Planner</strong>.</p>
-        <p style="color: #666; margin-bottom: 30px;">Feito pela comunidade, para a comunidade.</p>
+        <p style="color: #666; margin-bottom: 20px;">Feito pela comunidade, para a comunidade.</p>
+
+        <div class="social-links">
+            <a href="https://github.com/weudes-marquez/cotw-releases" target="_blank"
+                title="Repositório Oficial no GitHub">
+                <i class="fab fa-github"></i>
+            </a>
+            <a href="https://www.instagram.com/weudesmarquez/" target="_blank" title="Instagram do Desenvolvedor">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://cotwpinplanner.app" target="_blank" title="Conheça o COTW Pin Planner">
+                <img src="assets/icon.png" alt="Pin Planner"
+                    style="width: 28px; height: 28px; vertical-align: -5px; filter: grayscale(100%); transition: filter 0.3s;"
+                    onmouseover="this.style.filter='none'" onmouseout="this.style.filter='grayscale(100%)'">
+            </a>
+        </div>
 
         <div class="legal">
             <p>theHunter: Call of the Wild™ é uma marca registrada da Expansive Worlds AB. O COTW Grind Counter Overlay
@@ -504,6 +646,27 @@
 
         if (mockupLogin) mockupLogin.addEventListener('click', () => showContent('login'));
         if (mockupCounter) mockupCounter.addEventListener('click', () => showContent('features'));
+
+        // Security Guide Interactivity
+        function showGuide(id) {
+            // Remove active class from all contents
+            document.querySelectorAll('.guide-content').forEach(el => el.classList.remove('active'));
+            // Remove active class from all nav items
+            document.querySelectorAll('.guide-item').forEach(el => el.classList.remove('active'));
+
+            // Activate content
+            const targetContent = document.getElementById(`guide-${id}`);
+            if (targetContent) targetContent.classList.add('active');
+
+            // Activate nav item
+            const navItems = document.querySelectorAll('.guide-item');
+            navItems.forEach(item => {
+                const onOver = item.getAttribute('onmouseover');
+                if (onOver && onOver.includes(`'${id}'`)) {
+                    item.classList.add('active');
+                }
+            });
+        }
 
         // Security Notice click handler
         const securityNotice = document.querySelector('.security-notice');
