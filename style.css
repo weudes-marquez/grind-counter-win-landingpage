@@ -8,6 +8,10 @@
     --neon-glow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 40px rgba(217, 93, 30, 0.1);
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -18,7 +22,6 @@
 .btn,
 .btn-back,
 .btn-section,
-.hero-mockup,
 .mockup,
 .mockup-body img,
 .carousel-container,
@@ -27,6 +30,11 @@
 .lightbox-close,
 a {
     cursor: url('assets/crosshair.svg') 16 16, crosshair !important;
+}
+
+/* Standard pointer for hero interactive images */
+.hero-mockup {
+    cursor: pointer !important;
 }
 
 body {
@@ -362,6 +370,13 @@ section.exit-up {
     color: var(--hunter-orange);
     font-size: 2rem;
     animation: bounceArrow 2s infinite;
+    cursor: pointer;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.scroll-indicator:hover {
+    color: white;
 }
 
 @keyframes bounceArrow {
@@ -595,6 +610,66 @@ section {
 
 .feature-tray {
     background: transparent;
+}
+
+/* --- FAQ SECTION --- */
+.faq-section {
+    background: transparent;
+}
+
+.faq-item {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.faq-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: var(--hunter-orange);
+}
+
+.faq-question {
+    padding: 24px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    font-size: 1.2rem;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+.faq-item.active .faq-question {
+    color: var(--hunter-orange);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.faq-question i {
+    transition: transform 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.faq-item.active .faq-question i {
+    transform: rotate(180deg);
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.faq-item.active .faq-answer {
+    max-height: 500px;
+}
+
+.faq-answer p {
+    padding: 24px 30px;
+    color: var(--text-dim);
+    line-height: 1.8;
 }
 
 /* --- FOOTER --- */
